@@ -1,16 +1,1 @@
-[
-    {
-        "id": "1xy",
-        "type": "JSON",
-        "content": [
-            {
-                "weather": "sunny"
-            }
-        ]
-    },
-    {
-        "id": "2xy",
-        "type": "file",
-        "content": "example.html"
-    }    
-]
+[{"id":"1xy","type":"JSON","content":[{"weather":"sunny"}]},{"id":"2xy","type":"file","content":"example.html"},{"id":"4dbc05c0-20ec-11ea-a28b-338cdf2d9f8d","type":"JSON","content":[{"question":"geil","answer":"super"}]},{"id":"82715","type":"JSON","content":[{"question":"geil","answer":"super"}]},{"id":"941f477","type":"JSON","content":[{"question":"geil","answer":"super"}]},{"id":"4f236bb","type":"JSON","content":[{"question":"a","answer":"b"}]},{"id":"7938e38","type":"JSON","content":[{"question":"a","answer":"b"}]},{"id":"8e4894f","type":"JSON","content":[{"question":"s","answer":"a"}]},{"id":"c1d6fa0","type":"JSON","content":[{"question":"michael","answer":"spengler"}]}]

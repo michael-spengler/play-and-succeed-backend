@@ -11,7 +11,7 @@ export class AppController {
     response.redirect('https://dance-planner.de');
   }
 
-  @Get('/asset/:id')
+  @Get('/getAsset/:id')
   getAsset(@Param('id') id: string, @Res() response: any): void {
     const asset = this.appService.getAsset(id);
 
@@ -26,9 +26,9 @@ export class AppController {
     }
   }
 
-  @Post('/asset')
-  addAsset(@Body() body: any): void {
-    console.log(JSON.stringify(body));
+  @Post('/addAsset')
+  addAsset(@Body() body: any, @Res() response: any): void {
+    response.send(this.appService.addAsset(body));
   }
 
 }
