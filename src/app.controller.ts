@@ -31,4 +31,8 @@ export class AppController {
     response.send(this.appService.addAsset(body));
   }
 
+  @Post('/updateAsset/asset/:id')
+  updateAsset(@Param('id') id: string, @Body() body: any, @Res() response: any): void {
+    response.send(this.appService.updateAsset(id, body));
+  }
 }

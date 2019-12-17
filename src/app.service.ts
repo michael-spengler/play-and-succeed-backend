@@ -5,8 +5,15 @@ import uuidv1 = require('uuid/v1');
 
 @Injectable()
 export class AppService {
-  assetsFileId: any = path.join(__dirname, './../assets/assets.json');
-  addAsset(content: any) {
+  private assetsFileId: any = path.join(__dirname, './../assets/assets.json');
+  private assets = fs.readJSON(this.assetsFileId);
+
+  public getAsset(id: string): any {
+    this.assets = fs.readJSON(this.assetsFileId);
+    return this.assets.filter((entry) => entry.id === id)[0];
+  }
+
+  public addAsset(content: any) {
     const randomAssetId = uuidv1().substr(0, 7);
     const entry = {
       id: randomAssetId,
@@ -19,10 +26,17 @@ export class AppService {
     fs.write(this.assetsFileId, JSON.stringify(fileContent));
     return {randomAssetId};
   }
-  private assets = fs.readJSON(this.assetsFileId);
 
-  public getAsset(id: string): any {
-    this.assets = fs.readJSON(this.assetsFileId);
-    return this.assets.filter((entry) => entry.id === id)[0];
+  public updateAsset(id: string, content: any) {
+    const randomAssetId = uuidv1().substr(0, 7);
+    const fileContent = fs.readJSON(this.assetsFileId);
+    const relevantEntry = fileContent.filter((entry) => entry.id === id)[0];
+    if (relevantEntry === undefined) {
+      throw new Error('could not find and entry for this asset id');
+    }
+    relevantEntry.content = content;
+    fs.write(this.assetsFileId, JSON.stringify(fileContent));
+    return {randomAssetId};
   }
+
 }
