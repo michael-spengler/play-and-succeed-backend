@@ -20,10 +20,15 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@angular/common": "^8.2.14",
+    "@angular/core": "^8.2.14",
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
     "@nestjs/platform-express": "^6.0.0",
     "configuration-reader": "^1.0.6",
+    "cors": "^2.8.5",
+    "fs-sync": "^1.0.6",
+    "path": "^0.12.7",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"

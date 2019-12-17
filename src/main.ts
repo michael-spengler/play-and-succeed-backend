@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ConfigurationReader } from 'configuration-reader';
 import * as path from 'path';
+import cors = require('cors');
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,6 +17,7 @@ async function bootstrap() {
 
   const portNumber: string = portComingFromConfigFile;
 
+  app.use(cors('https://dance-planner.de', 'https://dance-planner.com', 'http://localhost:3000'));
   await app.listen(portNumber);
 
 }
