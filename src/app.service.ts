@@ -14,29 +14,38 @@ export class AppService {
   }
 
   public addAsset(content: any) {
-    const randomAssetId = uuidv1().substr(0, 7);
+    const randomAssetId = this.getNewRandomAssetId(7);
     const entry = {
       id: randomAssetId,
       type: 'JSON',
       content,
     };
 
-    const fileContent = fs.readJSON(this.assetsFileId);
-    fileContent.push(entry);
-    fs.write(this.assetsFileId, JSON.stringify(fileContent));
+    this.assets = fs.readJSON(this.assetsFileId);
+    this.assets.push(entry);
+    fs.write(this.assetsFileId, JSON.stringify(this.assets));
     return {randomAssetId};
   }
 
   public updateAsset(id: string, content: any) {
     const randomAssetId = uuidv1().substr(0, 7);
-    const fileContent = fs.readJSON(this.assetsFileId);
-    const relevantEntry = fileContent.filter((entry) => entry.id === id)[0];
+    this.assets = fs.readJSON(this.assetsFileId);
+    const relevantEntry = this.assets.filter((entry) => entry.id === id)[0];
     if (relevantEntry === undefined) {
       throw new Error('could not find and entry for this asset id');
     }
     relevantEntry.content = content;
-    fs.write(this.assetsFileId, JSON.stringify(fileContent));
+    fs.write(this.assetsFileId, JSON.stringify(this.assets));
     return {randomAssetId};
   }
 
+  private getNewRandomAssetId(length: number) {
+    const newId = uuidv1().substr(0, length);
+    const potentialDuplicate = this.assets.filter((entry) => entry.id === newId)[0];
+    if (potentialDuplicate === undefined) {
+      return newId;
+    } else {
+      throw new Error('You should increase the length of the id');
+    }
+  }
 }
