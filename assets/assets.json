@@ -12,5 +12,11 @@
         "id": "2xy",
         "type": "file",
         "content": "example.html"
+    },
+    {
+        "id": "logo",
+        "type": "file",
+        "content": "play-and-succeed-logo.png"
     }
+
 ]
